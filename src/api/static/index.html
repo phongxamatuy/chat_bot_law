@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Luật Sư - RAG Chatbot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass">
+            <div class="logo">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <h2>AI Luật Sư</h2>
+            </div>
+            <div class="sidebar-content">
+                <p class="subtitle">Trợ lý pháp lý ảo chạy trên hệ thống RAG nội bộ.</p>
+                <div class="model-selector">
+                    <label for="modelSelect">Mô hình AI:</label>
+                    <select id="modelSelect">
+                        <option value="" disabled selected>Đang tải danh sách model...</option>
+                    </select>
+                    <div id="ollamaStatus" class="status-badge"></div>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <button id="newChatBtn" class="btn-primary"><i class="fa-solid fa-plus"></i> Cuộc trò chuyện mới</button>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-container">
+            <div class="chat-header glass-header">
+                <h3><i class="fa-solid fa-robot"></i> Phiên Tư Vấn</h3>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome Message -->
+                <div class="message bot">
+                    <div class="avatar"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="message-content">
+                        <p>Xin chào! Tôi là trợ lý AI chuyên về Pháp luật Việt Nam. Tôi đã được kết nối với cơ sở dữ liệu luật hiện hành. Bạn muốn hỏi vấn đề gì hôm nay?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-area glass">
+                <form id="chatForm">
+                    <input type="text" id="userInput" placeholder="Nhập câu hỏi pháp lý của bạn..." autocomplete="off" required>
+                    <button type="submit" id="sendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Template for Citations -->
+    <template id="citationTemplate">
+        <div class="citation-box">
+            <h4><i class="fa-solid fa-book-bookmark"></i> Nguồn tham khảo:</h4>
+            <ul class="citation-list"></ul>
+        </div>
+    </template>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
